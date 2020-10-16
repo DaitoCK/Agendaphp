@@ -1,10 +1,15 @@
 <?php
-$bdd = new PDO("mysql:host=localhost;dbname=agenda;charset=utf8", "root", "");
-if(isset($_GET['id']) AND !empty($_GET['id'])) {
-   $get_id = htmlspecialchars($_GET['id']);
-   $pdoStat = $objetPdo->prepare('SELECT * FROM contact WHERE id = ?');
-   $pdoStat->execute(array($get_id));
-   
+
+
+$connect = new PDO("mysql:host=localhost;dbname=agenda;charset=utf8", "root", "");
+$id = $_REQUEST["id"];
+$id = intval($id);
+$sql = $connect->prepare("SELECT id FROM contact WHERE id = :id");
+$sql->bindParam(':id', $id);
+$var = $sql->execute();
+var_dump($var);
+
+
 ?>
 
 
@@ -15,7 +20,8 @@ if(isset($_GET['id']) AND !empty($_GET['id'])) {
             <meta charset="utf-8">
     </head>
     <body>
-            <h1><?= $titre ?></h1>
-            <p><?= $contenu ?></p>
+           
+
+
     </body>
 </html>

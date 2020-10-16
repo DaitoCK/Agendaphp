@@ -44,7 +44,7 @@
 
             </p>    
 
-            <p><input type="submit" valeur="Enregistrer"></p>
+            <p><input type="submit" value="Enregistrer"></p>
 
     </form>
     

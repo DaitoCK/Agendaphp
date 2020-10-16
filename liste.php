@@ -1,9 +1,9 @@
 <?php
 
-$objetPdo = new PDO('mysql:host=localhost;dbname=agenda','root','');
+$connect = new PDO('mysql:host=localhost;dbname=agenda','root','');
 
 
-$pdoStat = $objetPdo->prepare('SELECT * FROM contact');
+$pdoStat = $connect->prepare('SELECT * FROM contact');
 
 $executeIsOk = $pdoStat->execute();
 
@@ -29,9 +29,15 @@ $contacts = $pdoStat->fetchAll();
         <?php foreach ($contacts as $contact): ?>
 
             <li>
-                
-                <?= $contact['nom'] ?> <?= $contact['prenom'] ?> - <?= $contact['tel'] ?> - <?= $contact['mel'] ?>
+                <a href="detail.php?id=<?= $contact['id'] ?>">
+                    <?= $contact['nom'] ?> <?= $contact['prenom'] ?> -
+                    <?= $contact['tel'] ?> - <?= $contact['mel'] ?>
+                </a>
+
+
                 <a href="supprimer.php?numContact=<?= $contact['id'] ?> ">Supprimer</a>
+                <a href="form_modification.php?numContact=<?= $contact['id'] ?> ">Modifier</a>
+        
                 
             </li>
         <?php endforeach; ?>
